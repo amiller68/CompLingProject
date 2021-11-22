@@ -48,8 +48,12 @@ def save_data(genre_tag, genre_songs, data_dir='data/'):
 
 if __name__ == "__main__":
     print("Loading API keys...")
-    with open("api_keys.json", 'r') as api_keys_file:
-        api_keys = json.load(api_keys_file)
+    try:
+        with open("api_keys.json", 'r') as api_keys_file:
+            api_keys = json.load(api_keys_file)
+    except FileNotFoundError:
+        print("Oops! It looks like you don't have the file describing our API keys!")
+        exit()
 
     # Initialize an API object to do our searching with
     print("Authenticating Genius API...")
